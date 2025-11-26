@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["python312", "uv"]
+
+[phases.install]
+cmds = ["uv sync"]
+
+[start]
+cmd = "uv run python -m servicenow_mcp.server_sse --host=0.0.0.0 --port=$PORT"
+```
+
+## Alternative: Use Railway's Auto-Detection
+
+**Delete `railway.toml` entirely** and create a simple **`Procfile`**:
+```
+web: uv run python -m servicenow_mcp.server_sse --host=0.0.0.0 --port=$PORT
