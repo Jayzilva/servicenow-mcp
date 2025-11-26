@@ -193,6 +193,10 @@ def main():
     parser.add_argument("--port", type=int, default=8080, help="Port to listen on")
     args = parser.parse_args()
 
+    env_port = os.getenv("PORT")
+    if env_port:
+        args.port = int(env_port)
+
     server = create_servicenow_mcp(
         instance_url=os.getenv("SERVICENOW_INSTANCE_URL"),
         username=os.getenv("SERVICENOW_USERNAME"),
